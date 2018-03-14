@@ -110,12 +110,9 @@ class LaratrustSeeder extends Seeder
         DB::table('permission_role')->truncate();
         DB::table('permission_user')->truncate();
         DB::table('role_user')->truncate();
-        $usersTable = (new \App\User)->getTable();
-        $rolesTable = (new \App\Role)->getTable();
-        $permissionsTable = (new \App\Permission)->getTable();
-        DB::statement("TRUNCATE TABLE {$usersTable} CASCADE");
-        DB::statement("TRUNCATE TABLE {$rolesTable} CASCADE");
-        DB::statement("TRUNCATE TABLE {$permissionsTable} CASCADE");
+        \App\User::truncate();
+        \App\Role::truncate();
+        \App\Permission::truncate();
         Schema::enableForeignKeyConstraints();
     }
 }

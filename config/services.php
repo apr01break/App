@@ -37,11 +37,11 @@ return [
     'google' => [
        'client_id' => '216397423072-inf2v3vudivl89n75q85btplaarmhb8o.apps.googleusercontent.com', //google API
        'client_secret' => 'ngCEC5chLBi2QKeiY4XxK5av', //google Secret
-       'redirect' => 'http://localhost:8323/login/google/callback',
+       'redirect' => 'http://localhost:8000/login/google/callback',
     ],
     'facebook' => [
        'client_id' => '579870502373202', //Facebook API
        'client_secret' => 'd59c6d1e8118ea19f5da7992be2b81af', //Facebook Secret
-       'redirect' => 'http://localhost:8323/login/facebook/callback',
+       'redirect' => 'http://localhost:8000/login/facebook/callback',
     ],
 ];

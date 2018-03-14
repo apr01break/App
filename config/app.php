@@ -162,6 +162,7 @@ return [
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Laratrust\LaratrustServiceProvider::class,
+
     ],
 
     /*
@@ -213,6 +214,7 @@ return [
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Laratrust'   => Laratrust\LaratrustFacade::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
     ],
 
 ];

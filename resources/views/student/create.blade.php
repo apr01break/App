@@ -17,7 +17,7 @@
           </div>
           <div class="form-group col-md-8 col-md-offset-2">
             <label for="dni">Documento de indentificación (D.N.I. o pasaporte)</label>
-            <input type="text"id="dni" name="dni" value="" class="form-control" placeholder="Escribe tu documento de identifación..." required>
+            <input type="number"id="dni" name="dni" value="" class="form-control" placeholder="Escribe tu documento de identifación..." required>
           </div>
           <div class="form-group col-md-8 col-md-offset-2">
             <label for="nombre">Correo electronico</label>
@@ -76,7 +76,7 @@
           </div>
         </div>
         <div class="box-footer">
-          <button type="button" name="button" class="btn btn-default">Cancelar</button>
+          <a href="{{ url()->previous() }}" class="btn btn-default">Cancelar</a>
           <button type="submit" name="button" class="btn btn-primary pull-right">Registrar</button>
         </div>
       </form>

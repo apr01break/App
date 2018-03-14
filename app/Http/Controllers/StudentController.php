@@ -8,17 +8,22 @@ use Illuminate\Support\Facades\Redirect;
 use App\Student;
 class StudentController extends Controller
 {
+
     public function index(){
-      return view('student.index');
+      if(Auth::user()->hasrole('administrador')){
+        $students=Student::All();
+        return view('student.index',compact('students'));
+      }
+      return view('adminlte::home');
     }
     public function create(){
-      if(Auth::user()->hasrole('administrator')){
+      if(Auth::user()->hasrole('administrador')){
         return view('student.create');
       }
-      return view('vendor.adminlte.auth.login');
+      return view('adminlte::home');
     }
     public function edit($id){
-        if(Auth::user()->hasrole('user')){
+        if(Auth::user()->hasrole('alumno')){
           $student= Student::where('user_id',$id)->first();
           if(!empty($student)){
             return view('student.edit',compact('student'));
@@ -39,13 +44,13 @@ class StudentController extends Controller
             return view('student.edit',compact('student'));
           }
         }
-        if(Auth::user()->hasrole('administrator')){
-          $student= Student::where('id',$id);
+        if(Auth::user()->hasrole('administrador')){
+          $student= Student::where('id',$id)->get();
           return view('student.edit',compact('student'));
         }
     }
     public function update(Request $request, $id){
-      if($request->user()->hasRole('user')){
+      if($request->user()->hasRole('alumno')){
         $updated=Student::updateOrCreate([
           'user_id' => Auth::user()->id,
         ],[
@@ -62,9 +67,9 @@ class StudentController extends Controller
            'conexion' =>$request-> conexion,
            'comentarios' =>$request-> comentarios
           ]);
-      return Redirect::to('student.index');
+      return Redirect::to('student');
     }
-    if($request->user()->hasRole('administrator')){
+    if($request->user()->hasRole('administrador')){
       $updatestudent=Student::find($id);
       $updatestudent-> name =$request-> name;
       $updatestudent-> dni = $request-> dni;
@@ -79,7 +84,7 @@ class StudentController extends Controller
       $updatestudent-> conexion = $request-> conexion;
       $updatestudent-> comentarios = $request-> comentarios;
       $upupdatedrole->save();
-      return Redirect::to('student.index');
+      return Redirect::to('student');
     }
     return view('vendor.adminlte.auth.login');
     }
@@ -99,6 +104,7 @@ class StudentController extends Controller
       $newstudent-> conexion =$request->get('conexion');
       $newstudent-> comentarios =$request->get('comentarios');
       $newstudent->save();
+      return Redirect::to('student');
     }
     public function destroy($id){}
 }

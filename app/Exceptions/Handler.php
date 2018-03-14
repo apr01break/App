@@ -48,6 +48,20 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+      return parent::render($request, $exception);
+/*
+        if ($request->wantsJson()) {
+            return response([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 404);
+        }
+        if ($e instanceof AuthorizationException) {
+            return redirect('path');
+            //or simply
+            return view('errors.forbidden');
+            //but this will return an OK, 200 response.
+        }
+        return parent::render($request, $e);*/
     }
 }

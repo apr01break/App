@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Role;
 class RoleController extends Controller
 {
@@ -12,11 +13,11 @@ class RoleController extends Controller
   }
   public function store(Request $request){
     $newrole=new Role();
-    $newrole-> name         = $request->get('nameRole');
-    $newrole-> display_name = $request->get('displayname'); //optional
+    $newrole-> name         = $request->get('name');
+    $newrole-> display_name = $request->get('display_name'); //optional
     $newrole-> description  = $request->get('description');// optional
     $newrole->save();
-    return Redirect::to('role.index');
+    return Redirect::to('role');
   }
   public function create(){
     return view('role.create');
@@ -35,11 +36,11 @@ class RoleController extends Controller
     $updatedrole-> display_name =$request-> display_name;
     $updatedrole-> description =$request-> description;
     $upupdatedrole->save();
-    return Redirect::to('role.index');
+    return Redirect::to('role');
   }
   public function destroy($id){
     $droprole=Role::find($id);
     $droprole->delete();
-    return Redirect::to('role.index');
+    return Redirect::to('role');
   }
 }
