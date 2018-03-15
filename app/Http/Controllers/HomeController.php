@@ -9,7 +9,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-
+use App\Course;
+use App\Group;
+use Illuminate\Support\Facades\Auth;
 /**
  * Class HomeController
  * @package App\Http\Controllers
@@ -33,6 +35,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('adminlte::home');
+      $groups=Group::where('estado',1)->orderBy('fechainicio','asc')->get();
+      $course=Course::all();
+      $userId = Auth::user()->id;
+        return view('adminlte::home',compact('groups','course','userId'));
     }
 }

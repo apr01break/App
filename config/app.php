@@ -215,6 +215,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Laratrust'   => Laratrust\LaratrustFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

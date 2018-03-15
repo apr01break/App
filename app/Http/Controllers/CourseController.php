@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Course;
+//use Illuminate\Support\Facades\Input;
 class CourseController extends Controller
 {
     /**
@@ -39,16 +40,20 @@ class CourseController extends Controller
         $course=new Course();
         $course-> nombre= $request->get('nombre');
         $course-> horas= $request->get('horas');
+        $course-> dias= $request->get('dias');
         $course-> horainicio= $request->get('horainicio');
         $course-> horaconclusion= $request->get('horaconclusion');
-        $course-> lunes= $request->get('lunes');
-        $course-> martes= $request->get('martes');
-        $course-> miercoles= $request->get('miercoles');
-        $course-> jueves= $request->get('jueves');
-        $course-> viernes= $request->get('viernes');
-        $course-> sabado= $request->get('sabado');
-        $course-> domingo= $request->get('domingo');
-        $course-> tipo= $request->get('tipo');
+        $course-> precio= $request->get('precio');
+        $course-> lunes= $request->has('lunes');
+        $course-> martes= $request->has('martes');
+        $course-> miercoles= $request->has('miercoles');
+        $course-> jueves= $request->has('jueves');
+        $course-> viernes= $request->has('viernes');
+        $course-> sabado= $request->has('sabado');
+        $course-> domingo= $request->has('domingo');
+        $course-> presencial= $request->has('presencial');
+        $course-> online= $request->has('online');
+        $course-> incluye= $request->get('incluye');
         $course-> descripcion= $request->get('descripcion');
         $course->save();
         return Redirect::to('course');
@@ -63,7 +68,7 @@ class CourseController extends Controller
     public function show($id)
     {
         //
-        return view('coruse.show');
+        return view('course.show');
     }
 
     /**

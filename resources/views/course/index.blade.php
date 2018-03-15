@@ -1,7 +1,7 @@
 @extends('adminlte::layouts.app')
-@section('contentheader_title','Roles')
+@section('contentheader_title','Cursos')
 @section('htmlheader_title')
-	Roles
+	Cursos
 @endsection
 @section('main-content')
 <div class="container-fluid spark-screen">
@@ -10,7 +10,7 @@
       <div class="box box-primary">
         <div class="box-header with-border">
           <h3 class="box-title">Registros de cursos</h3>
-          <a href="{{route('role.create')}}" class="btn btn-primary pull-right">Nuevo Curso</a>
+          <a href="{{route('course.create')}}" class="btn btn-primary pull-right">Nuevo Curso</a>
         </div>
 				<div class="box-body">
               <div class="table-responsive">
@@ -23,15 +23,51 @@
                       <th>Hora de inicio</th>
                       <th>Hora de conclusión</th>
                       <th>Tipo</th>
+											<th>Días</th>
+											<th>incluye</th>
                       <th>Descripción</th>
                       <th data-priority="3" width="1%">Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
-										@foreach($allroles as $rol)
+										@foreach($courses as $course)
                     <tr>
-                      <td>{{{$rol->display_name}}}</td>
-											<td>{{{$rol->description}}}</td>
+                      <td>{{$course->nombre}}</td>
+											<td>{{$course->dias}}</td>
+											<td>{{$course->horas}}</td>
+											<td>{{$course->horainicio}}</td>
+											<td>{{$course->horaconclusion}}</td>
+											<td>@if($course->online == 1)
+												Online
+											@endif
+											@if($course->presencial == 1)
+												Presencial
+											@endif
+											</td>
+											<td>@if($course->lunes)
+												Lunes
+												@endif
+												@if($course->martes)
+													Martes
+													@endif
+													@if($course->miercoles)
+														Miercoles
+														@endif
+														@if($course->jueves)
+															Jueves
+															@endif
+															@if($course->viernes)
+																Viernes
+																@endif
+																@if($course->sabado)
+																	Sabado
+																	@endif
+												@if($course->domingo)
+												Domingo
+												@endif
+												</td>
+												<td>{{$course->incluye}}</td>
+												<td>{{$course->descripcion}}</td>
                       <td><a href="" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>
                           <a href="#" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#bs-delete-modal-lg"><i class="fa fa-close"></i></a>
                       </td>

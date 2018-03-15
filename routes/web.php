@@ -50,7 +50,7 @@ Route::group(['prefix'=>'student','as'=>'student.'],function(){
   Route::get('/{id}',['uses'=>'StudentController@edit'])->name('edit');
   Route::post('/{id}',['uses'=>'StudentController@update'])->name('update');
   Route::get('/create',['uses'=>'StudentController@create'])->name('create');
-});*/
+});
 Route::group(['prefix'=>'course','as'=>'course.'],function(){
   Route::get('/',['uses'=>'CourseController@index'])->name('index');
   Route::post('/',['uses'=>'CourseController@store'])->name('store');
@@ -58,9 +58,20 @@ Route::group(['prefix'=>'course','as'=>'course.'],function(){
   Route::get('/{id}',['uses'=>'CourseController@edit'])->name('edit');
   Route::post('/{id}',['uses'=>'CourseController@update'])->name('update');
   Route::get('/create',['uses'=>'CourseController@create'])->name('create');
-});
+});*/
+Route::resource('course','CourseController');
 //Route::resource('role','RoleController');
 Route::resource('student','StudentController');
 Route::resource('permission','PermissionController');
+Route::resource('group','GroupController');
+Route::get('voucher/{userId}/group/{groupId}', [
+    'as' => 'voucher.create',
+    'uses' => 'VoucherController@create'
+]);
+Route::post('voucher/{userId}/group/{groupId}', [
+    'as' => 'voucher.store',
+    'uses' => 'VoucherController@store'
+]);
+//Route::post('/voucher/create/{groupid}/{userid}','VoucherController@store')->name('voucher.store');
 //Route::resource('user','UserController');
 Route::post('/userrole/{id}', 'UserController@userrole');

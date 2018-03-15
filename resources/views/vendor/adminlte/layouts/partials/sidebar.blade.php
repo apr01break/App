@@ -35,6 +35,7 @@
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
+            <li><a href=""><i class="fa fa-link"></i> <span>Vouchers de pago</span> </a></li>
             @if($user->hasrole('administrador'))
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Administracion</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -45,7 +46,8 @@
                     <li><a href="{{route('student.index')}}">Alumnos</a></li>
                     <li><a href="#">Certificados</a></li>
                     <li><a href="#">Comprobantes</a></li>
-                    <li><a href="#">Cursos</a></li>
+                    <li><a href="{{route('course.index')}}">Cursos</a></li>
+                    <li><a href="{{route('group.index')}}">Grupos</a></li>
                 </ul>
             </li>
             @endif
