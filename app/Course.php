@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Group;
 
 class Course extends Model
 {
@@ -17,8 +18,15 @@ class Course extends Model
       'online' => false,
       'presencial' => false,
   ];
-  public function group()
-  {
-      return $this->hasOne('Group');
+
+  protected $table      = 'courses';
+  protected $primaryKey = 'id';
+  public $timestamps    = true;
+  protected $fillable   = [
+    'nombre','horas','dias','horainicio','horaconclusion','lunes','martes','miercoles','jueves','viernes','sabado','domingo','precio','presencial','online','incluye','descripcion'
+  ];
+  public function groups()
+  {  
+    return $this->hasMany(Group::class,'course_id');
   }
 }

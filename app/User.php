@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
+use App\Voucher;
+use App\Student;
 
 class User extends Authenticatable
 {
@@ -28,4 +30,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function vouchers()
+    {  
+        return $this->hasMany(Voucher::class,'user_id');
+    }
+    public function student()
+    {  
+        return $this->hasOne(Student::class,'suser_id');
+    }
 }
